@@ -1,34 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title></title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+
+    <title>Coffee Project</title>
 </head>
 <body>
     <h1>Coffee!</h1>
+        <hr>
 
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                    <table>
+
+                        <tbody id="coffees"></tbody>
+                    </table>
+            </div>
+
+<!-------------------1st Coffee Selections--------------------->
+    <div class="col">
+        <div><h6>Roast</h6></div>
     <form>
+        <div>
         <label for="roast-selection"></label>
         <select id="roast-selection">
             <option>light</option>
             <option>medium</option>
             <option>dark</option>
         </select>
-        <input id="submit" type="submit" />
+        </div>
+        <br>
+<!-------------------2nd Coffee Selections--------------------->
+        <div>
+            <h6>Coffee Name</h6>
+        </div>
+                <label for="coffee-name"></label>
+                <input id="coffee-name" name="coffee-name" type="text">
+                <br>
+
+            <div>
+                <input id="submit" type="submit" />
+            </div>
+
     </form>
+<!------------------3nd Coffee Selections--------------------->
+        <form>
+           <br>
+        <div><h3>Add a Coffee</h3></div>
+        <div><h6>Roast</h6></div>
+        <div>
+                <label for="roast-selection"></label>
+                <select id="roast-selection">
+                    <option>light</option>
+                    <option>medium</option>
+                    <option>dark</option>
+                </select>
 
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>NAME</th>
-                <th>ROAST</th>
-            </tr>
-        </thead>
-        <tbody id="coffees"></tbody>
-    </table>
+        </div>
+<!-------------------4nd Coffee Selections--------------------->
+            <div><h6>Name</h6></div>
 
+                <label for="coffee-name"></label>
+
+                <input id="coffee-name" name="coffee-name" type="text">
+                <br>
+
+                <div>
+                    <input id="submit" type="submit" />
+                </div>
+        </form>
     <script src="main.js"></script>
+    </div>
 </body>
 </html>

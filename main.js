@@ -68,15 +68,17 @@ function updateCoffees(e) {
 function search(e){
     e.preventDefault();
 
-    var searchTerm = searchInput.value.toLowerCase();
+    //using metaphone to get phonetics of the word
+    var searchTerm = double_metaphone(searchInput.value);
+    
     var filteredCoffees = [];
     coffees.forEach( coffee =>{
         //switches the coffee name to lowercase for the compare to be accurate
-        var coffeeCase = coffee.name.toLowerCase()
+        var coffeeCase = double_metaphone(coffee.name)
         //filters coffee roast and passes all if "all" is selected
         if(roastSelection.value != coffee.roast && roastSelection.value.toLowerCase() != "all") return false;
         //check if coffee name has any part of the search term in there
-        if(coffeeCase.indexOf(searchTerm) == -1){
+        if(coffeeCase.primary.indexOf(searchTerm.primary) == -1){
             return false; 
         }else{
             filteredCoffees.push(coffee);

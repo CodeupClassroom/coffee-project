@@ -117,7 +117,6 @@ var coffees = [
 ];
 
 var coffeeList = document.querySelector('#coffees');
-var submitButton = document.querySelector('#submit');
 var roastSelection = document.querySelector('#roast-selection');
 var searchInput = document.getElementById("search")
 var addRoast = document.getElementById("add-roast");
@@ -135,24 +134,41 @@ submitNewCoffee.addEventListener('click', addCoffee);
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 
+
+//Assets
 var mountain1 = new Image();
-mountain1.src = "mountain1.svg"
+mountain1.src = "img/mountain1.svg"
 
 var mountain2 = new Image();
-mountain2.src = "mountain2.svg"
+mountain2.src = "img/mountain2.svg"
 
 var clouds1 = new Image();
-clouds1.src = "cloud1.svg"
+clouds1.src = "img/cloud1.svg"
 
-var mousePos = {
-    x: 0,
-    y: 0
-}
+var moon = new Image();
+moon.src = "img/moon.svg"
 
 var sky = ctx.createLinearGradient(0, 0, 0, 170);
 sky.addColorStop(0, "#56afdb");
 sky.addColorStop(0.5, "#7bc0e3");
 sky.addColorStop(1, "#a7d9f2");
+
+
+//Variable Decleration
+var mousePos = {
+    x: 0,
+    y: 0
+}
+var keyBuffer = [];
+var dMode = 0;
+
+
+function darkMode(){
+    sky = ctx.createLinearGradient(0, 0, 0, 170);
+    sky.addColorStop(0, "#4d4794");
+    sky.addColorStop(0.5, "#2a274f");
+    sky.addColorStop(1, "#0b0a17");
+}
 
 var cloud1PosX = 0
 var cloud2PosX = -900
@@ -162,8 +178,6 @@ function animate(){
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight + 60;
 
-
-
     mountain1.width = canvas.width * 2
     mountain1.height = canvas.height 
 
@@ -172,6 +186,11 @@ function animate(){
     
     //Clears canvas
     ctx.clearRect(0, 0 ,canvas.width, canvas.height)
+
+    //Dark Mode Check
+    if(dMode){
+        ctx.filter = 'brightness(.2)';
+    }
 
     //renders sky
     ctx.fillStyle = sky
@@ -193,6 +212,13 @@ function animate(){
         mountain2.height  //height
     )
 
+    //Draw moon
+    if(dMode){
+        ctx.filter = 'brightness(1)'; //returns brightness so moon can be fully yellow
+        ctx.drawImage(moon, 10,-320)
+        ctx.filter = 'brightness(.2)';
+    }
+
     //clouds
 
     if(cloud1PosX >= 1000) cloud1PosX = -700;
@@ -205,6 +231,8 @@ function animate(){
     cloud1PosX++
     cloud2PosX++
 
+    
+
     //loop
     requestAnimationFrame(animate);
 }
@@ -216,27 +244,46 @@ function updatePos(e){
     mousePos.y = e.clientY; 
 }
 
-var keyBuffer = [];
+
 
 function konami(e) {
 
     //console.log(e);
-    var kode = [38,38,40,40,37,39,37,39,66,65];
+    //The konami code
+    var kode = [38,38,40,40,37,39,37,39,66,65,13];
 
+    //every key pressed will go into the buffer
+    keyBuffer.push(e.keyCode);
+
+    //we check the buffer each press to see if it matches 
+    //the code so far, if not clear it
     keyBuffer.forEach((key, index) => {
         if (kode[index] !== key) {
             keyBuffer = [];
         }
     })
 
-    if(keyBuffer.length === kode.length && e.keyCode === 13) {
+    //if the keybuffer is the same length, we must have gotten the code right
+    if(keyBuffer.length === kode.length) {
         console.log("YEET");
+        //fires off dark mode
+        submitNewCoffee.style.background = "#7f2996"
+        submitNewCoffee.style.borderColor = "#7f2996"
+
+        var style = document.createElement("style");
+        style.innerHTML = `
+            .vis-font{
+                color: #d257f2;
+            }
+ 
+        `
+        document.body.appendChild(style)
+        darkMode()
+        dMode = true;
     } else if (keyBuffer.length > kode.length) {
         keyBuffer = [];
     }
 
-    keyBuffer.push(e.keyCode);
-    //console.log(keyBuffer);
 }
 
 document.addEventListener("keydown", konami);

@@ -16,7 +16,7 @@ function renderCoffees(coffee){
 
         //sets up classes
         bigName.setAttribute("class","");
-        smallName.setAttribute("class","p-2 font-weight-normal text-secondary");
+        smallName.setAttribute("class","p-2 font-weight-normal vis-font");
 
         container.setAttribute("class","p-2 col-6 d-flex flex-row");
     

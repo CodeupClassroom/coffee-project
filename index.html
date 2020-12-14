@@ -3,48 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css"><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css'/>
 </head>
 <body>
-    <h1>Coffee!</h1>
 
-    <form>
-        <label for="roast-selection"></label>
-        <select id="roast-selection">
-            <option>all</option>
-            <option>light</option>
-            <option>medium</option>
-            <option>dark</option>
-        </select>
-        <input type="text" id="search">
-        <input id="submit" type="submit" />
-    </form>
+    <div class="container">
 
 
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>NAME</th>
-                <th>ROAST</th>
-            </tr>
-        </thead>
-        <tbody id="coffees"></tbody>
-    </table>
+    
+        <h1 class="text-center">Coffee!</h1>
 
-    <form>
-        <label for="add-roast">Add your own coffee!</label>
-        <select id="add-roast" class="form-control">
-            <option>Light</option>
-            <option>Medium</option>
-            <option>Dark</option>
-        </select>
-        <div>
-            <input type="text" id="add-coffee">
-            <button id="submit-new-coffee" type="submit">Submit</button>
+        <hr>
+
+        <div class="row">
+
+            <div class="col">
+            
+                <div id="coffees" class="row">
+
+
+                </div>
+                
+            </div>
+    
+            <div class="col">
+    
+                <form >
+                    <div class="form-group">
+                        
+                        <label class="px-0 col font-weight-bold" for="roast-selection">Roast</label>
+                        <select id="roast-selection" class="my-1 form-control">
+                            <option>all</option>
+                            <option>light</option>
+                            <option>medium</option>
+                            <option>dark</option>
+                        </select>
+
+                        <label class="px-0 col font-weight-bold my-1"> Coffee Name</label>
+                        <input class="col form-control my-1" type="text" id="search" placeholder="Coffee name here!">
+
+                        <input id="submit" type="submit" class="col btn btn-primary my-2"/>
+                    </div>
+                </form>
+    
+    
+            
+    
+    
+    
+                <form>
+                    <div class="form-group">
+
+                        <h2 class="col text-center" >Add a Coffee</h2>
+
+                        <label class="px-0 col font-weight-bold my-1"> Roast</label>
+                        <select id="add-roast" class="col form-control my-1">
+                            <option>Light</option>
+                            <option>Medium</option>
+                            <option>Dark</option>
+                        </select>
+
+                        <label class="px-0 col font-weight-bold my-1"> Name</label>
+                        <input type="text" id="add-coffee" class="col form-control my-1" placeholder="New coffee">
+
+                        <button class="col btn btn-primary my-2" id="submit-new-coffee" type="submit">Submit</button>
+                    </div>
+                </form>
+    
+            </div>
+
         </div>
-    </form>
 
-    <script src="main.js"></script>
+        
+        
+        <script src="main.js"></script>
+
+    </div>
 </body>
 </html>

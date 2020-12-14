@@ -3,7 +3,7 @@
 function renderCoffees(coffee){
 
     //clears list
-    coffeeList.innerHTML = ""
+    coffeeList.innerHTML = "";
 
     coffee.forEach( coffee =>{
 
@@ -11,14 +11,14 @@ function renderCoffees(coffee){
         var smallName = document.createElement("h5") //Coffee roast
         var container = document.createElement("div") 
     
-        bigName.innerHTML = coffee.name 
-        smallName.innerHTML = coffee.roast
+        bigName.innerHTML = coffee.name;
+        smallName.innerHTML = coffee.roast;
 
         //sets up classes
-        bigName.setAttribute("class","")
-        smallName.setAttribute("class","p-2 font-weight-normal text-secondary")
+        bigName.setAttribute("class","");
+        smallName.setAttribute("class","p-2 font-weight-normal text-secondary");
 
-        container.setAttribute("class","p-2 col-6 d-flex flex-row")
+        container.setAttribute("class","p-2 col-6 d-flex flex-row");
     
         container.appendChild(bigName);
         container.appendChild(smallName);
@@ -58,7 +58,7 @@ function updateCoffees(e) {
 
     }else{
         //goes to the search function if there is an input
-        search(e)
+        search(e);
     }
 
     

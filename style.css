@@ -29,5 +29,16 @@ background: rgba(0,0,0,0.6);
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-background: rgba(0,0,0,0,7); 
+background: rgba(0,0,0,0.7);
+}
+
+.btn-blue {
+    background-color: #88c6db;
+    border: 1px solid #88c6db;
+    border-radius: 5px;
+    color: #545454;
+}
+
+.vis-font {
+    color: #88c6db;
 }

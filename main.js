@@ -22,21 +22,46 @@ function updateCoffees(e) {
     e.preventDefault(); // don't submit the form, we just want to update the data
     var selectedRoast = roastSelection.value;
     var filteredCoffees = [];
-    coffees.forEach(function(coffee) {
-        if (coffee.roast === selectedRoast) {
+    
+    //this checks if all coffee's are selected and just returns all coffees 
+    if(selectedRoast == "all"){
+        coffees.forEach( coffee =>{
             filteredCoffees.push(coffee);
-        }
-    });
-    tbody.innerHTML = renderCoffees(filteredCoffees);
+        });
+        tbody.innerHTML = renderCoffees(filteredCoffees);
+        return true;
+    }
+
+    //if there is no input and you select a roast that is not "all", gets coffee's with those roasts
+    if(searchInput.value == ''){
+
+        coffees.forEach(function(coffee) {
+            if (coffee.roast === selectedRoast) {
+                filteredCoffees.push(coffee);
+            }
+        });
+        tbody.innerHTML = renderCoffees(filteredCoffees);
+
+    }else{
+        //goes to the search function if there is an input
+        search(e)
+    }
+
+    
+    
 }
 
 function search(e){
     e.preventDefault();
 
-    var searchTerm = e.target.value.toLowerCase();
+    var searchTerm = searchInput.value.toLowerCase();
     var filteredCoffees = [];
     coffees.forEach( coffee =>{
+        //switches the coffee name to lowercase for the compare to be accurate
         var coffeeCase = coffee.name.toLowerCase()
+        //filters coffee roast and passes all if "all" is selected
+        if(roastSelection.value != coffee.roast && roastSelection.value != "all") return false;
+        //check if coffee name has any part of the search term in there
         if(coffeeCase.indexOf(searchTerm) == -1){
             return false; 
         }else{
@@ -71,5 +96,5 @@ var searchInput = document.getElementById("search")
 
 tbody.innerHTML = renderCoffees(coffees);
 
-submitButton.addEventListener('click', updateCoffees);
+roastSelection.addEventListener('input', updateCoffees);
 searchInput.addEventListener('input',search)

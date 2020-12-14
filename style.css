@@ -1,9 +1,33 @@
-table {
-    border-collapse: collapse;
-    margin: 15px 0;
+#myCanvas {
+    position:fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    overflow: hidden;
+}
+#content {
+    z-index: 10;
+    position: relative;
+    background-color: rgba(0,0,0,0.6);
+    
 }
 
-td, th {
-    border: 1px solid black;
-    padding: 5px 10px;
+/* width */
+::-webkit-scrollbar {
+width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+background: rgba(0,0,0,0); 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+background: rgba(0,0,0,0.6); 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+background: rgba(0,0,0,0,7); 
 }

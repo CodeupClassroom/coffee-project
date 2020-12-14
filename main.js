@@ -34,7 +34,7 @@ function renderCoffees(coffee){
 
 function updateCoffees(e) {
     e.preventDefault(); // don't submit the form, we just want to update the data
-    var selectedRoast = roastSelection.value;
+    var selectedRoast = roastSelection.value.toLowerCase();
     var filteredCoffees = [];
     
     //this checks if all coffee's are selected and just returns all coffees 
@@ -74,7 +74,7 @@ function search(e){
         //switches the coffee name to lowercase for the compare to be accurate
         var coffeeCase = coffee.name.toLowerCase()
         //filters coffee roast and passes all if "all" is selected
-        if(roastSelection.value != coffee.roast && roastSelection.value != "all") return false;
+        if(roastSelection.value != coffee.roast && roastSelection.value.toLowerCase() != "all") return false;
         //check if coffee name has any part of the search term in there
         if(coffeeCase.indexOf(searchTerm) == -1){
             return false; 

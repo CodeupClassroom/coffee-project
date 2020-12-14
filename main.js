@@ -128,3 +128,93 @@ renderCoffees(coffees);
 roastSelection.addEventListener('input', updateCoffees);
 searchInput.addEventListener('input',search);
 submitNewCoffee.addEventListener('click', addCoffee);
+
+
+//Animated background 
+//Grabbing the canvas element
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+
+var mountain1 = new Image();
+mountain1.src = "mountain1.svg"
+
+var mountain2 = new Image();
+mountain2.src = "mountain2.svg"
+
+var clouds1 = new Image();
+clouds1.src = "cloud1.svg"
+
+var mousePos = {
+    x: 0,
+    y: 0
+}
+
+var sky = ctx.createLinearGradient(0, 0, 0, 170);
+sky.addColorStop(0, "#56afdb");
+sky.addColorStop(0.5, "#7bc0e3");
+sky.addColorStop(1, "#a7d9f2");
+
+var cloud1PosX = 0
+var cloud2PosX = -900
+
+function animate(){
+    //resizes the canvas to the window
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight + 60;
+
+
+
+    mountain1.width = canvas.width * 2
+    mountain1.height = canvas.height 
+
+    mountain2.width = canvas.width * 2 
+    mountain2.height = canvas.height 
+    
+    //Clears canvas
+    ctx.clearRect(0, 0 ,canvas.width, canvas.height)
+
+    //renders sky
+    ctx.fillStyle = sky
+    ctx.fillRect(0,0,canvas.width, canvas.height)
+
+    //mountains
+    ctx.drawImage(
+        mountain1,  
+        -20 + (-canvas.width / 2 ) + (mousePos.x / 26),
+        (canvas.height - mountain1.height) + (mousePos.y / 26),
+        mountain1.width , 
+        mountain1.height  
+    )
+    ctx.drawImage(
+        mountain2, // the image to draw
+        -70 + (-canvas.width / 2 ) + (mousePos.x / 16),                                      // X-Cord
+        (canvas.height - mountain2.height) + (mousePos.y / 16),  // Y-Cord   
+        mountain2.width , //width
+        mountain2.height  //height
+    )
+
+    //clouds
+
+    if(cloud1PosX >= 1000) cloud1PosX = -700;
+    ctx.drawImage(clouds1, cloud1PosX - (mousePos.x / 25), 0 - (mousePos.y / 25))
+
+    if(cloud2PosX >= 1000) cloud2PosX = -700;
+    ctx.drawImage(clouds1, cloud2PosX - (mousePos.x / 25), 0 - (mousePos.y / 25))
+
+    //animation
+    cloud1PosX++
+    cloud2PosX++
+
+    //loop
+    requestAnimationFrame(animate);
+}
+
+animate()
+
+function updatePos(e){
+    mousePos.x = e.clientX;   
+    mousePos.y = e.clientY; 
+}
+
+
+document.addEventListener("mousemove",updatePos)

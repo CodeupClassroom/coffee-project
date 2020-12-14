@@ -42,3 +42,8 @@ background: rgba(0,0,0,0.7);
 .vis-font {
     color: #88c6db;
 }
+
+#coffees {
+    overflow-y: auto;
+    max-height: 28em;
+}

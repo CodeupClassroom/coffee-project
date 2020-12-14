@@ -20,6 +20,7 @@
         <input id="submit" type="submit" />
     </form>
 
+
     <table>
         <thead>
             <tr>
@@ -30,6 +31,19 @@
         </thead>
         <tbody id="coffees"></tbody>
     </table>
+
+    <form>
+        <label for="add-roast">Add your own coffee!</label>
+        <select id="add-roast" class="form-control">
+            <option>Light</option>
+            <option>Medium</option>
+            <option>Dark</option>
+        </select>
+        <div>
+            <input type="text" id="add-coffee">
+            <button id="submit-new-coffee" type="submit">Submit</button>
+        </div>
+    </form>
 
     <script src="main.js"></script>
 </body>

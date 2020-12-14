@@ -216,5 +216,31 @@ function updatePos(e){
     mousePos.y = e.clientY; 
 }
 
+var keyBuffer = [];
+
+function konami(e) {
+
+    //console.log(e);
+    var kode = [38,38,40,40,37,39,37,39,66,65];
+
+    keyBuffer.forEach((key, index) => {
+        if (kode[index] !== key) {
+            keyBuffer = [];
+        }
+    })
+
+    if(keyBuffer.length === kode.length && e.keyCode === 13) {
+        console.log("YEET");
+    } else if (keyBuffer.length > kode.length) {
+        keyBuffer = [];
+    }
+
+    keyBuffer.push(e.keyCode);
+    //console.log(keyBuffer);
+}
+
+document.addEventListener("keydown", konami);
+
+
 
 document.addEventListener("mousemove",updatePos)

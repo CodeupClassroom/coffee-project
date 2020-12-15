@@ -18,7 +18,7 @@ function renderCoffees(coffee){
         bigName.setAttribute("class","");
         smallName.setAttribute("class","p-2 font-weight-normal vis-font");
 
-        container.setAttribute("class","p-2 col-6 d-flex flex-row");
+        container.setAttribute("class","p-2 col-6 d-flex flex-sm-row flex-column");
     
         container.appendChild(bigName);
         container.appendChild(smallName);
@@ -230,6 +230,10 @@ var dMode = 0;
 
 var modeMenu = document.querySelectorAll(".mode-menu");
 
+var optionsMenu = document.getElementById("options");
+
+var optionsText = document.getElementById("options-text");
+
 function darkMode(){
     sky = ctx.createLinearGradient(0, 0, 0, 170);
     sky.addColorStop(0, "#4d4794");
@@ -237,6 +241,15 @@ function darkMode(){
     sky.addColorStop(1, "#0b0a17");
     submitNewCoffee.style.background = "#7f2996";
     submitNewCoffee.style.borderColor = "#7f2996";
+    modeButton.style.background = "#7f2996";
+    modeButton.style.borderColor = "#7f2996";
+    modeButton.innerText = "Turn on Light Mode";
+    customDelete.style.background = "#7f2996";
+    customDelete.style.borderColor = "#7f2996";
+
+    optionsMenu.style.background = "rgba(39, 46, 79,0.9)";
+    optionsText.style.color = "#ffffff";
+
 
     style.innerHTML = `
             .vis-font{
@@ -261,7 +274,14 @@ function lightMode(){
     sky.addColorStop(1, "#a7d9f2");
     submitNewCoffee.style.background = "#88c6db";
     submitNewCoffee.style.borderColor = "#88c6db";
+    modeButton.style.background = "#88c6db";
+    modeButton.style.borderColor = "#88c6db";
+    modeButton.innerText = "Turn on Dark Mode";
+    customDelete.style.background = "#88c6db";
+    customDelete.style.borderColor = "#88c6db";
 
+    optionsMenu.style.background = "rgba(255,255,255,0.9)";
+    optionsText.style.color = "#000000";
 
     style.innerHTML = `
             .vis-font{

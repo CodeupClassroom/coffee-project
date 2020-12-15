@@ -276,6 +276,20 @@ function lightMode(){
     })
 }
 
+var modeButton = document.getElementById("mode-button");
+var customDelete = document.getElementById("custom-delete");
+
+customDelete.addEventListener('click', resetCoffees);
+modeButton.addEventListener('click', function() {
+    if (dMode) {
+        lightMode();
+        dMode = false;
+    } else {
+       darkMode();
+       dMode = true;
+    }
+})
+
 function animate(){
     //resizes the canvas to the window
     canvas.width = window.innerWidth;

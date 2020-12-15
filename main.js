@@ -165,7 +165,7 @@ sky.addColorStop(0.5, "#7bc0e3");
 sky.addColorStop(1, "#a7d9f2");
 
 var moon = new Image();
-moon.src = 'img/moon.svg'
+moon.src = 'img/moon.svg';
 
 
 //Variable Decleration
@@ -181,6 +181,17 @@ function darkMode(){
     sky.addColorStop(0, "#4d4794");
     sky.addColorStop(0.5, "#2a274f");
     sky.addColorStop(1, "#0b0a17");
+    submitNewCoffee.style.background = "#7f2996";
+    submitNewCoffee.style.borderColor = "#7f2996";
+
+    var style = document.createElement("style");
+    style.innerHTML = `
+            .vis-font{
+                color: #d257f2;
+            }
+ 
+        `
+    document.body.appendChild(style);
 }
 
 function animate(){
@@ -190,7 +201,7 @@ function animate(){
 
     
     //Clears canvas
-    ctx.clearRect(0, 0 ,canvas.width, canvas.height)
+    ctx.clearRect(0, 0 ,canvas.width, canvas.height);
 
     //Dark Mode Check
     if(dMode){
@@ -204,7 +215,7 @@ function animate(){
     //Draw moon
     if(dMode){
         ctx.filter = 'brightness(1)'; //returns brightness so moon can be fully yellow
-        ctx.drawImage(moon, 10,-320)
+        ctx.drawImage(moon, 10,-320);
         ctx.filter = 'brightness(.2)';
     }
 
@@ -293,24 +304,24 @@ function konami(e) {
     if(keyBuffer.length === kode.length) {
         console.log("YEET");
         //fires off dark mode
-        submitNewCoffee.style.background = "#7f2996"
-        submitNewCoffee.style.borderColor = "#7f2996"
-
-        var style = document.createElement("style");
-        style.innerHTML = `
-            .vis-font{
-                color: #d257f2;
-            }
- 
-        `
-        document.body.appendChild(style)
-        darkMode()
+        darkMode();
         dMode = true;
     } else if (keyBuffer.length > kode.length) {
         keyBuffer = [];
     }
 
 }
+
+function themeBasedOnTime(){
+    const date = new Date();
+    const hour = date.getHours();
+    if (hour < 5 || hour > 20) {
+        darkMode();
+        dMode = true;
+    }
+}
+
+themeBasedOnTime();
 
 document.addEventListener("keydown", konami);
 

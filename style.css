@@ -74,3 +74,11 @@ background: rgba(0,0,0,0.7);
 #optionsButton:hover {
     cursor: pointer;
 }
+
+#close-options {
+    color: #000000;
+}
+
+#close-options:hover {
+    cursor: pointer;
+}

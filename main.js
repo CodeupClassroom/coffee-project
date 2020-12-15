@@ -180,7 +180,7 @@ var optionsWindow = document.getElementById("options");
 roastSelection.addEventListener('input', updateCoffees);
 searchInput.addEventListener('input',search);
 submitNewCoffee.addEventListener('click', addCoffee);
-optionsButton.addEventListener('click', toggleOptions)
+optionsButton.addEventListener('click', toggleOptions);
 
 
 //Animated background 
@@ -250,6 +250,8 @@ function darkMode(){
     optionsMenu.style.background = "rgba(39, 46, 79,0.9)";
     optionsText.style.color = "#ffffff";
 
+    closeOptions.style.color = "#ffffff";
+
 
     style.innerHTML = `
             .vis-font{
@@ -283,6 +285,8 @@ function lightMode(){
     optionsMenu.style.background = "rgba(255,255,255,0.9)";
     optionsText.style.color = "#000000";
 
+    closeOptions.style.color = "#000000";
+
     style.innerHTML = `
             .vis-font{
                 color: #88c6db;
@@ -309,6 +313,10 @@ modeButton.addEventListener('click', function() {
        dMode = true;
     }
 })
+
+var closeOptions = document.getElementById("close-options");
+
+closeOptions.addEventListener("click", toggleOptions);
 
 function animate(){
     //resizes the canvas to the window

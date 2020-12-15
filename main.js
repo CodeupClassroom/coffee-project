@@ -210,39 +210,17 @@ function animate(){
 
     //mountains
     ctx.drawImage(mountainback,
-        500 + (mousePos.x /25),
-        160 + (mousePos.y /25),
+        (canvas.width - mountainback.width/1.2) + (mousePos.x /25),
+        20 + (mousePos.y /25),
         mountainback.width,
         mountainback.height)
-
-    ctx.drawImage(mountainfront,
-        -200 + (mousePos.x /22),
-        200 + (mousePos.y /22),
-        mountainfront.width,
-        mountainfront.height)
-
-    ctx.drawImage(backhill,
-        (canvas.width - backhill.width) + (mousePos.x /18),
-        (canvas.height - backhill.height) + 200 + (mousePos.y /18), 
-        backhill.width,
-        backhill.height)
-
-    ctx.drawImage(fronthill,
-        (-fronthill.width + canvas.width)  + (mousePos.x /14),
-        (canvas.height - fronthill.height) + 150 + (mousePos.y /14), 
-        fronthill.width,
-        fronthill.height)
-
-    
-
-    
 
     //clouds
 
     clouds.forEach( cloud =>{
         ctx.drawImage(cloud,
-            cloud.posX + (mousePos.x /22),
-            cloud.randomY,
+            cloud.posX ,
+            cloud.randomY +  (mousePos.y /16),
             180,
             110
         )
@@ -252,6 +230,30 @@ function animate(){
             cloud.posX += canvas.width + 1000
         }
     })
+
+    ctx.drawImage(mountainfront,
+        -200 + (mousePos.x /22),
+        20 + (mousePos.y /20),
+        mountainfront.width,
+        mountainfront.height)
+
+    ctx.drawImage(backhill,
+        (canvas.width - backhill.width) + 350 + (mousePos.x /18),
+        (canvas.height - backhill.height) + 300 + (mousePos.y /8), 
+        backhill.width,
+        backhill.height)
+
+    ctx.drawImage(fronthill,
+        (-fronthill.width/3 + canvas.width/3)  + (mousePos.x /14),
+        (canvas.height - fronthill.height) + 150 + (mousePos.y /5), 
+        fronthill.width,
+        fronthill.height)
+
+    
+
+    
+
+   
 
     //animation
 

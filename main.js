@@ -340,7 +340,7 @@ function konami(e) {
 function themeBasedOnTime(){
     const date = new Date();
     const hour = date.getHours();
-    if (hour < 5 || hour > 20) {
+    if (hour < 7 || hour > 17) {
         darkMode();
         dMode = true;
     }

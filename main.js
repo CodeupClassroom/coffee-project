@@ -184,14 +184,32 @@ function darkMode(){
     submitNewCoffee.style.background = "#7f2996";
     submitNewCoffee.style.borderColor = "#7f2996";
 
-    var style = document.createElement("style");
     style.innerHTML = `
             .vis-font{
                 color: #d257f2;
             }
  
         `
-    document.body.appendChild(style);
+}
+
+var style = document.createElement("style");
+document.body.appendChild(style);
+
+function lightMode(){
+    sky = ctx.createLinearGradient(0, 0, 0, 170);
+    sky.addColorStop(0, "#56afdb");
+    sky.addColorStop(0.5, "#7bc0e3");
+    sky.addColorStop(1, "#a7d9f2");
+    submitNewCoffee.style.background = "#88c6db";
+    submitNewCoffee.style.borderColor = "#88c6db";
+
+
+    style.innerHTML = `
+            .vis-font{
+                color: #88c6db;
+            }
+ 
+        `
 }
 
 function animate(){
@@ -301,11 +319,18 @@ function konami(e) {
     })
 
     //if the keybuffer is the same length, we must have gotten the code right
-    if(keyBuffer.length === kode.length) {
+    if (keyBuffer.length === kode.length && !dMode) {
         console.log("YEET");
         //fires off dark mode
         darkMode();
         dMode = true;
+        keyBuffer = [];
+    } else if (keyBuffer.length === kode.length && dMode) {
+        console.log("AWWW YEEEEAAAHHH");
+        //fires off light mode
+        lightMode();
+        dMode = false;
+        keyBuffer = [];
     } else if (keyBuffer.length > kode.length) {
         keyBuffer = [];
     }

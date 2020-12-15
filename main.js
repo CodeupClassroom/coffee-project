@@ -176,6 +176,8 @@ var mousePos = {
 var keyBuffer = [];
 var dMode = 0;
 
+var modeMenu = document.querySelectorAll(".mode-menu");
+
 function darkMode(){
     sky = ctx.createLinearGradient(0, 0, 0, 170);
     sky.addColorStop(0, "#4d4794");
@@ -190,6 +192,11 @@ function darkMode(){
             }
  
         `
+
+    modeMenu.forEach((x) => {
+        x.style.backgroundColor = "#2a274f";
+        x.style.color = "white";
+    })
 }
 
 var style = document.createElement("style");
@@ -210,6 +217,11 @@ function lightMode(){
             }
  
         `
+
+    modeMenu.forEach((x) => {
+        x.style.backgroundColor = "#ffffff";
+        x.style.color = "#000000";
+    })
 }
 
 function animate(){

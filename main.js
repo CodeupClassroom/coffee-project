@@ -98,11 +98,14 @@ function addCoffee(e) {
     }
     coffees.push(newCoffeeObj);
     renderCoffees(coffees);
+    writeChanges()
 }
 
 // from http://www.ncausa.org/About-Coffee/Coffee-Roasts-Guide
-var coffees = [
-    {id: 1, name: 'Light City', roast: 'light'},
+
+function resetCoffees(){
+
+    var defaultCoffees = [{id: 1, name: 'Light City', roast: 'light'},
     {id: 2, name: 'Half City', roast: 'light'},
     {id: 3, name: 'Cinnamon', roast: 'light'},
     {id: 4, name: 'City', roast: 'medium'},
@@ -115,20 +118,69 @@ var coffees = [
     {id: 11, name: 'Espresso', roast: 'dark'},
     {id: 12, name: 'Viennese', roast: 'dark'},
     {id: 13, name: 'Italian', roast: 'dark'},
-    {id: 14, name: 'French', roast: 'dark'},
-];
+    {id: 14, name: 'French', roast: 'dark'}]
+
+    
+    localStorage.setItem("coffeeProject", JSON.stringify(defaultCoffees))
+    coffees = JSON.parse(localStorage.getItem("coffeeProject"))
+    renderCoffees(coffees);
+}
+
+
+function init(){
+
+    var defaultCoffees = [{id: 1, name: 'Light City', roast: 'light'},
+    {id: 2, name: 'Half City', roast: 'light'},
+    {id: 3, name: 'Cinnamon', roast: 'light'},
+    {id: 4, name: 'City', roast: 'medium'},
+    {id: 5, name: 'American', roast: 'medium'},
+    {id: 6, name: 'Breakfast', roast: 'medium'},
+    {id: 7, name: 'High', roast: 'dark'},
+    {id: 8, name: 'Continental', roast: 'dark'},
+    {id: 9, name: 'New Orleans', roast: 'dark'},
+    {id: 10, name: 'European', roast: 'dark'},
+    {id: 11, name: 'Espresso', roast: 'dark'},
+    {id: 12, name: 'Viennese', roast: 'dark'},
+    {id: 13, name: 'Italian', roast: 'dark'},
+    {id: 14, name: 'French', roast: 'dark'}]
+
+    if(localStorage.getItem("coffeeProject") == null){
+        //this creates the database before the end of the project
+        localStorage.setItem("coffeeProject", JSON.stringify(defaultCoffees) )
+    }
+
+    //grab the persistant data and put it to coffees
+    coffees = JSON.parse(localStorage.getItem("coffeeProject"))
+    renderCoffees(coffees);
+}
+
+function writeChanges(){
+    localStorage.setItem("coffeeProject", JSON.stringify(coffees) )
+}
+
+function toggleOptions(){
+    if(optionsWindow.style.display != "none"){
+        optionsWindow.style.display = "none"
+    }else{
+        optionsWindow.style.display = "block"
+    }
+}
+
+var coffees = [];
 
 var coffeeList = document.querySelector('#coffees');
 var roastSelection = document.querySelector('#roast-selection');
 var searchInput = document.getElementById("search")
 var addRoast = document.getElementById("add-roast");
 var submitNewCoffee = document.getElementById("submit-new-coffee");
+var optionsButton = document.getElementById("optionsButton");
+var optionsWindow = document.getElementById("options");
 
-renderCoffees(coffees);
 
 roastSelection.addEventListener('input', updateCoffees);
 searchInput.addEventListener('input',search);
 submitNewCoffee.addEventListener('click', addCoffee);
+optionsButton.addEventListener('click', toggleOptions)
 
 
 //Animated background 
@@ -245,7 +297,7 @@ function animate(){
     //Draw moon
     if(dMode){
         ctx.filter = 'brightness(1)'; //returns brightness so moon can be fully yellow
-        ctx.drawImage(moon, 10,-320);
+        ctx.drawImage(moon, 10,-320)
         ctx.filter = 'brightness(.2)';
     }
 
@@ -365,3 +417,5 @@ document.addEventListener("keydown", konami);
 
 
 document.addEventListener("mousemove",updatePos)
+
+init()

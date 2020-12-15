@@ -138,22 +138,34 @@ var ctx = canvas.getContext("2d");
 
 
 //Assets
-var mountain1 = new Image();
-mountain1.src = "img/mountain1.svg"
+var mountainback = new Image();
+mountainback.src = "img/mountainback.png"
 
-var mountain2 = new Image();
-mountain2.src = "img/mountain2.svg"
+var mountainfront = new Image();
+mountainfront.src = "img/mountainfront.png"
 
-var clouds1 = new Image();
-clouds1.src = "img/cloud1.svg"
+var clouds = [];
+for(var i = 0; i < 10 ;i++){
+    clouds[i] = new Image();
+    let randomCloud = Math.floor(Math.random() * 4)
+    clouds[i].src = `img/cloud${randomCloud}.png`;
+    clouds[i].posX = 300 * [i];
+    clouds[i].randomY = Math.floor(Math.random() * 400) -100
+}
 
-var moon = new Image();
-moon.src = "img/moon.svg"
+var backhill = new Image();
+backhill.src = 'img/backhill.png';
+
+var fronthill = new Image();
+fronthill.src = 'img/fronthill.png';
 
 var sky = ctx.createLinearGradient(0, 0, 0, 170);
 sky.addColorStop(0, "#56afdb");
 sky.addColorStop(0.5, "#7bc0e3");
 sky.addColorStop(1, "#a7d9f2");
+
+var moon = new Image();
+moon.src = 'img/moon.svg'
 
 
 //Variable Decleration
@@ -164,7 +176,6 @@ var mousePos = {
 var keyBuffer = [];
 var dMode = 0;
 
-
 function darkMode(){
     sky = ctx.createLinearGradient(0, 0, 0, 170);
     sky.addColorStop(0, "#4d4794");
@@ -172,19 +183,11 @@ function darkMode(){
     sky.addColorStop(1, "#0b0a17");
 }
 
-var cloud1PosX = 0
-var cloud2PosX = -900
-
 function animate(){
     //resizes the canvas to the window
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight + 60;
 
-    mountain1.width = canvas.width * 2
-    mountain1.height = canvas.height 
-
-    mountain2.width = canvas.width * 2 
-    mountain2.height = canvas.height 
     
     //Clears canvas
     ctx.clearRect(0, 0 ,canvas.width, canvas.height)
@@ -198,22 +201,6 @@ function animate(){
     ctx.fillStyle = sky
     ctx.fillRect(0,0,canvas.width, canvas.height)
 
-    //mountains
-    ctx.drawImage(
-        mountain1,  
-        -20 + (-canvas.width / 2 ) + (mousePos.x / 26),
-        (canvas.height - mountain1.height) + (mousePos.y / 26),
-        mountain1.width , 
-        mountain1.height  
-    )
-    ctx.drawImage(
-        mountain2, // the image to draw
-        -70 + (-canvas.width / 2 ) + (mousePos.x / 16),                                      // X-Cord
-        (canvas.height - mountain2.height) + (mousePos.y / 16),  // Y-Cord   
-        mountain2.width , //width
-        mountain2.height  //height
-    )
-
     //Draw moon
     if(dMode){
         ctx.filter = 'brightness(1)'; //returns brightness so moon can be fully yellow
@@ -221,17 +208,52 @@ function animate(){
         ctx.filter = 'brightness(.2)';
     }
 
+    //mountains
+    ctx.drawImage(mountainback,
+        500 + (mousePos.x /25),
+        160 + (mousePos.y /25),
+        mountainback.width,
+        mountainback.height)
+
+    ctx.drawImage(mountainfront,
+        -200 + (mousePos.x /22),
+        200 + (mousePos.y /22),
+        mountainfront.width,
+        mountainfront.height)
+
+    ctx.drawImage(backhill,
+        (canvas.width - backhill.width) + (mousePos.x /18),
+        (canvas.height - backhill.height) + 200 + (mousePos.y /18), 
+        backhill.width,
+        backhill.height)
+
+    ctx.drawImage(fronthill,
+        (-fronthill.width + canvas.width)  + (mousePos.x /14),
+        (canvas.height - fronthill.height) + 150 + (mousePos.y /14), 
+        fronthill.width,
+        fronthill.height)
+
+    
+
+    
+
     //clouds
 
-    if(cloud1PosX >= 1000) cloud1PosX = -700;
-    ctx.drawImage(clouds1, cloud1PosX - (mousePos.x / 25), 0 - (mousePos.y / 25))
+    clouds.forEach( cloud =>{
+        ctx.drawImage(cloud,
+            cloud.posX + (mousePos.x /22),
+            cloud.randomY,
+            180,
+            110
+        )
+        cloud.posX--
 
-    if(cloud2PosX >= 1000) cloud2PosX = -700;
-    ctx.drawImage(clouds1, cloud2PosX - (mousePos.x / 25), 0 - (mousePos.y / 25))
+        if(cloud.posX <= -700){
+            cloud.posX += canvas.width + 1000
+        }
+    })
 
     //animation
-    cloud1PosX++
-    cloud2PosX++
 
     
 

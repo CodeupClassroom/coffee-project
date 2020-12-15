@@ -8,8 +8,12 @@
 #content {
     z-index: 10;
     position: relative;
-    background-color: rgba(0,0,0,0.6);
-    
+    background-color: rgba(0,0,0,0.6);   
+}
+
+#coffees{
+    overflow-y: auto;
+    max-height: 28em;
 }
 
 /* width */

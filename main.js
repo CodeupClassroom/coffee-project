@@ -379,7 +379,7 @@ function animate(){
         backhill.height)
 
     ctx.drawImage(fronthill,
-        (-fronthill.width/3 + canvas.width/3)  + (mousePos.x /14),
+        (-fronthill.width/3 + canvas.width/3) - 100 + (mousePos.x /14),
         (canvas.height - fronthill.height) + 150 + (mousePos.y /5), 
         fronthill.width,
         fronthill.height)

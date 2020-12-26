@@ -1,9 +1,115 @@
-table {
-    border-collapse: collapse;
-    margin: 15px 0;
+@import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Just+Another+Hand&display=swap');
+/*font-family: 'Gochi Hand', cursive;*/
+/*font-family: 'Just Another Hand', cursive;*/
+* {
+    /*display: inline-block;*/
+    /*margin: 0;*/
+    /*border: solid lightgray .5px;*/
+    padding: 0;
+    /*align-content: center;*/
+    font-family: 'Gochi Hand', cursive;
 }
 
-td, th {
-    border: 1px solid black;
-    padding: 5px 10px;
+body {
+    background-image: url("images/patryk-gauza-vs0tzSHVcac-unsplash.jpg");
+}
+
+.jumbotron {
+    /*background: #f4dfbdd1; !important;*/
+    background-image: url("images/gif-roasting-better.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    opacity: 80%;
+    border-bottom: black solid 3px;
+}
+
+h4 {
+    color: #f4dfbd; !important;
+}
+
+
+#submit, #createSubmit {
+    background: #764520;
+    border-radius: 5px;
+    margin-top: .25em;
+}
+
+#filterCoffees, #addRoast {
+    height: 3em;
+    border-radius: 5px;
+    margin-top: .25em;
+}
+
+
+#createSubmit {
+    background: #764520;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.row {
+    margin: 0;
+}
+#chalkBoard {
+    border: solid #764520 10px;
+    background-image: url("images/chalkboard-or-blackboard.jpg");
+    color: whitesmoke; !important;
+    letter-spacing: 4px;
+    border-radius: 5px;
+    height: 640px;
+    overflow: auto;
+}
+
+#roast-selection, #add-roast {
+    background: #f4dfbdd1; !important;
+    border-radius: 5px;
+}
+
+#add-roast {
+    margin-top: 5px;
+}
+
+img {
+    margin-top: 2em;
+    border-radius: 10px;
+
+}
+
+#h1 {
+    background: #f4dfbdd1 ;
+    border-radius:45%;
+    width: 300px;
+    margin-left: 1.5em;
+}
+
+#footer {
+    margin-top: 3em;
+    min-height: 100px;
+    color: whitesmoke; !important;
+    background-image: url("images/chalkboard-or-blackboard.jpg");
+    border-top: black solid 3px;
+}
+
+a {
+    color: whitesmoke; !important;
+}
+
+ul {
+    list-style: none;
+    text-align: center;
+}
+
+a:visited {
+    color: gray;
+}
+
+
+a:hover {
+    color: #764520;
+}
+
+
+i {
+    height: 20px;
 }
